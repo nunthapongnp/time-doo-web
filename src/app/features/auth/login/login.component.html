@@ -1,0 +1,60 @@
+<div class="auth-container">
+    <h1 class="text-center mb-4">เข้าสู่ระบบ</h1>
+    <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+    >
+        <div class="mb-4">
+            <input
+                placeholder="กรอกอีเมล"
+                formControlName="email"
+                class="form-control"
+                type="email"
+            />
+        </div>
+
+        <div class="mb-4">
+            <div class="input-group">
+                <input
+                    placeholder="รหัสผ่าน"
+                    [type]="hidePassword ? 'password' : 'text'"
+                    formControlName="password"
+                    class="form-control"
+                />
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    (click)="hidePassword = !hidePassword"
+                >
+                    <i
+                        class="bi"
+                        [ngClass]="hidePassword ? 'bi-eye-slash' : 'bi-eye'"
+                    ></i>
+                </button>
+            </div>
+            @if (loginForm.controls['password'].invalid &&
+            loginForm.controls['password'].touched) {
+            <div class="text-danger mt-1">กรุณาระบุ</div>
+            }
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="#">ลืมรหัสผ่าน</a>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button
+                routerLink="/register"
+                class="btn btn-outline-primary flex-fill"
+            >
+                สมัครสมาชิก
+            </button>
+            <button
+                class="btn btn-primary flex-fill"
+                type="submit"
+            >
+                เข้าสู่ระบบ <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+    </form>
+</div>

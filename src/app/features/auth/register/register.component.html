@@ -1,0 +1,97 @@
+<div class="auth-container">
+    <h1 class="text-center mb-4">สมัครสมาชิก</h1>
+    <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+    >
+        <div class="mb-3">
+            <input
+                placeholder="กรอกอีเมล"
+                formControlName="email"
+                class="form-control"
+                type="email"
+            />
+        </div>
+
+        <div class="mb-3">
+            <div class="input-group">
+                <input
+                    placeholder="รหัสผ่าน"
+                    [type]="hidePassword ? 'password' : 'text'"
+                    formControlName="password"
+                    class="form-control"
+                />
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    (click)="hidePassword = !hidePassword"
+                >
+                    <i
+                        class="bi"
+                        [ngClass]="hidePassword ? 'bi-eye-slash' : 'bi-eye'"
+                    ></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="input-group">
+                <input
+                    placeholder="ยืนยันรหัสผ่าน"
+                    [type]="hideConfirm ? 'password' : 'text'"
+                    formControlName="confirmPassword"
+                    class="form-control"
+                />
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    (click)="hideConfirm = !hideConfirm"
+                >
+                    <i
+                        class="bi"
+                        [ngClass]="hideConfirm ? 'bi-eye-slash' : 'bi-eye'"
+                    ></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="progress mb-3">
+            <div
+                class="progress-bar bg-success"
+                [style.width.%]="passwordStrength >= 1 ? 33 : 0"
+            ></div>
+            <div
+                class="progress-bar bg-success"
+                [style.width.%]="passwordStrength >= 2 ? 33 : 0"
+            ></div>
+            <div
+                class="progress-bar bg-success"
+                [style.width.%]="passwordStrength >= 3 ? 34 : 0"
+            ></div>
+        </div>
+
+        <ul class="text-start small ps-3">
+            <li [class.text-success]="validLength">
+                ความยาวมากกว่า 8 ตัวอักษร
+            </li>
+            <li [class.text-success]="hasNumber">ระบุตัวเลข (0-9)</li>
+            <li [class.text-success]="hasSpecial">ระบุตัวอักษรพิเศษ</li>
+        </ul>
+
+        <div class="d-flex justify-content-between mt-4">
+            <button
+                routerLink="/login"
+                class="btn btn-outline-primary"
+                type="button"
+            >
+                เข้าสู่ระบบ
+            </button>
+            <button
+                class="btn btn-primary"
+                type="submit"
+            >
+                สมัครสมาชิก <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+    </form>
+</div>

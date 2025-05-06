@@ -1,0 +1,16 @@
+{
+    "ALL.APP_NAME": "Time Doo",
+    "ALL.SAVE": "บันทึก",
+    "ALL.EDIT": "แก้ไข",
+    "ALL.CANCEL": "ยกเลิก",
+    "ALL.OK": "ตกลง",
+    "ALL.CLOSE": "ปิด",
+    "ALL.DELETE": "ลบ",
+    "PROJECT.PROJECT_NAME": "ชื่อโปรเจค",
+    "PROJECT.DESCRIPTION": "รายละเอียด",
+    "PROJECT.CREATED_AT": "วันที่สร้าง",
+    "PROJECT.TITLE_ADD_PROJECT": "เพิ่มโปรเจค",
+    "PROJECT.COLUMN_NAME": "ชื่อหัวข้อ",
+    "PROJECT.TASK_NAME": "ชื่องาน",
+    "PROJECT.BTN_ADD_TASK": "เพิ่มงานใหม่"
+}

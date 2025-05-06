@@ -1,0 +1,19 @@
+<ngx-datatable
+    class="bootstrap expandable"
+    [rows]="rows"
+    [columnMode]="columnMode.force"
+    [sortType]="sortType.multi"
+    [scrollbarH]="true"
+    [headerHeight]="35"
+    [rowHeight]="'auto'"
+    [footerHeight]="35"
+    [summaryPosition]="'bottom'"
+    [summaryHeight]="'auto'"
+    [reorderable]="sortable"
+    [selectionType]="selectionType.checkbox"
+    [offset]="page.index"
+    [limit]="page.size"
+    [messages]="messages"
+>
+    <ng-content></ng-content>
+</ngx-datatable>

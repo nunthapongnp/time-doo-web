@@ -1,0 +1,126 @@
+<div class="row mb-3">
+    <div class="col">
+        <button
+            class="btn btn-primary"
+            (click)="openModalAddProject(addProjectModal)"
+        >
+            <i class="bi bi-plus-lg"></i>
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <app-table-client [rows]="projects">
+                    <ngx-datatable-column>
+                        <ng-template ngx-datatable-header-template>
+                            {{ "PROJECT.PROJECT_NAME" | translate }}
+                        </ng-template>
+                        <ng-template
+                            let-row="row"
+                            let-index="rowIndex"
+                            ngx-datatable-cell-template
+                        >
+                            <a [routerLink]="['/projects', row.id]">{{
+                                row.name
+                            }}</a>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column>
+                        <ng-template ngx-datatable-header-template>
+                            {{ "PROJECT.DESCRIPTION" | translate }}
+                        </ng-template>
+                        <ng-template
+                            let-row="row"
+                            let-index="rowIndex"
+                            ngx-datatable-cell-template
+                        >
+                            {{ row.description }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column>
+                        <ng-template ngx-datatable-header-template>
+                            {{ "PROJECT.CREATED_AT" | translate }}
+                        </ng-template>
+                        <ng-template
+                            let-row="row"
+                            let-index="rowIndex"
+                            ngx-datatable-cell-template
+                        >
+                            {{ row.createdAt | formatDate }}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column [width]="5">
+                        <ng-template
+                            let-row="row"
+                            let-index="rowIndex"
+                            ngx-datatable-cell-template
+                            class="text-center"
+                        >
+                            <button class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </app-table-client>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #addProjectModal>
+    <form [formGroup]="form">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">
+                {{ "PROJECT.TITLE_ADD_PROJECT" | translate }}
+            </h4>
+            <button
+                type="button"
+                class="btn-close close pull-right"
+                aria-label="Close"
+                (click)="closeModalAddProject()"
+            >
+                <span
+                    aria-hidden="true"
+                    class="visually-hidden"
+                    >&times;</span
+                >
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row gap-3">
+                <div class="col-12">
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="name"
+                        placeholder="{{ 'PROJECT.PROJECT_NAME' | translate }}"
+                    />
+                </div>
+                <div class="col-12">
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="description"
+                        placeholder="{{ 'PROJECT.DESCRIPTION' | translate }}"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button
+                class="btn btn-secondary"
+                (click)="closeModalAddProject()"
+            >
+                {{ "ALL.CANCEL" | translate }}
+            </button>
+            <button
+                class="btn btn-primary"
+                (click)="addProject()"
+            >
+                {{ "ALL.SAVE" | translate }}
+            </button>
+        </div>
+    </form>
+</ng-template>

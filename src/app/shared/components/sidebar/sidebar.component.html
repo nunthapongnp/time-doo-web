@@ -1,0 +1,61 @@
+<div
+    class="d-flex"
+    [class.toggled]="isSidebarCollapsed"
+>
+    <!-- Sidebar -->
+    <nav
+        id="sidebar"
+        class="d-flex flex-column justify-content-between"
+    >
+        <div>
+            <div class="sidebar-header p-3">
+                <h4 class="mb-0">Time Doo</h4>
+            </div>
+            <ul class="list-unstyled components px-3">
+                @for (item of menuItems; track $index) {
+                <li
+                    routerLinkActive="active"
+                    class="menus-item"
+                >
+                    <a
+                        [routerLink]="'/' + item.path"
+                        class="menu-link"
+                    >
+                        <i class="bi bi-{{ item.icon }}"></i>
+                        {{ item.label }}</a
+                    >
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="p-4">
+            <button
+                (click)="logout()"
+                class="btn btn-outline-danger w-100 text-decoration-none"
+            >
+                Logout
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div
+        id="content"
+        class="w-100"
+    >
+        <nav class="navbar navbar-expand-lg navbar-light px-3">
+            <button
+                type="button"
+                id="sidebarCollapse"
+                class="btn btn-light"
+                (click)="toggleSidebar()"
+            >
+                <i class="bi bi-list"></i>
+            </button>
+        </nav>
+
+        <div class="main-content contrainer-fluid p-3 bg-light overflow-scroll">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

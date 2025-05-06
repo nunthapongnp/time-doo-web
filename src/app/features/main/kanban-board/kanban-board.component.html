@@ -1,0 +1,202 @@
+<form [formGroup]="form">
+    <div
+        formArrayName="columns"
+        class="row d-flex flex-nowrap"
+    >
+        @for (columnControl of columnsForm.controls; let colIndex = $index;
+        track colIndex) {
+        <div
+            [formGroupName]="colIndex"
+            class="col-6"
+        >
+            <div class="card">
+                <div class="card-body">
+                    @if (columnControl.value.id > 0) {
+                    <div class="row">
+                        <div
+                            class="col d-flex justify-content-between align-items-center"
+                        >
+                            <div class="fw-bold">
+                                {{ columnControl.value.name }}
+                                <span class="text-primary"
+                                    >({{
+                                        columnControl.value.tasks.length
+                                    }})</span
+                                >
+                            </div>
+                            <div class="dropdown">
+                                <button
+                                    class="btn btn-link btn-sm"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    <i
+                                        class="bi bi-three-dots-vertical text-black"
+                                    ></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="dropdown-item">
+                                            <i class="bi bi-pencil-square"></i>
+                                            {{ "ALL.EDIT" | translate }}
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item text-danger">
+                                            <i class="bi bi-trash"></i>
+                                            {{ "ALL.DELETE" | translate }}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div formArrayName="tasks">
+                        @for (taskControl of getTasksForm(colIndex).controls;
+                        let taskIndex = $index; track taskIndex) {
+                        <div
+                            [formGroupName]="taskIndex"
+                            class="row mt-2"
+                        >
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        @if (taskControl.value.id > 0) {
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card-title fw-bold">
+                                                    {{
+                                                        taskControl.value.title
+                                                    }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card-text">
+                                                    {{
+                                                        taskControl.value
+                                                            .description
+                                                    }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        } @else {
+                                        <div class="row mb-2">
+                                            <div
+                                                class="col d-flex gap-2 justify-content-end"
+                                            >
+                                                <button
+                                                    class="btn btn-sm btn-outline-primary"
+                                                    (click)="
+                                                        saveTask(
+                                                            colIndex,
+                                                            taskIndex
+                                                        )
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bi bi-check-lg"
+                                                    ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-sm btn-outline-danger"
+                                                    (click)="
+                                                        removeTask(
+                                                            colIndex,
+                                                            taskIndex
+                                                        )
+                                                    "
+                                                >
+                                                    <i class="bi bi-x-lg"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input
+                                                    formControlName="title"
+                                                    placeholder="{{
+                                                        'PROJECT.TASK_NAME'
+                                                            | translate
+                                                    }}"
+                                                    class="form-control mb-1"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <textarea
+                                                    formControlName="description"
+                                                    placeholder="{{
+                                                        'PROJECT.DESCRIPTION'
+                                                            | translate
+                                                    }}"
+                                                    class="form-control mb-1"
+                                                ></textarea>
+                                            </div>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    @if (!haveNewTask(colIndex)) {
+                    <div class="row mt-2">
+                        <div class="col">
+                            <button
+                                class="btn btn-sm btn-primary btn-block w-100"
+                                (click)="addTask(colIndex)"
+                            >
+                                <i class="bi bi-plus-circle"></i>
+                                {{ "PROJECT.BTN_ADD_TASK" | translate }}
+                            </button>
+                        </div>
+                    </div>
+                    } } @else {
+                    <div class="row mb-2">
+                        <div class="col d-flex gap-2 justify-content-end">
+                            <button
+                                class="btn btn-sm btn-outline-primary"
+                                (click)="saveColumn(colIndex)"
+                            >
+                                <i class="bi bi-check-lg"></i>
+                            </button>
+                            <button
+                                class="btn btn-sm btn-outline-danger"
+                                (click)="removeColumn(colIndex)"
+                            >
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input
+                                formControlName="name"
+                                placeholder="{{
+                                    'PROJECT.COLUMN_NAME' | translate
+                                }}"
+                                class="form-control"
+                            />
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        } @if (!haveNewColumn()) {
+        <div class="col">
+            <button
+                class="btn btn-lg btn-primary"
+                (click)="addColumn()"
+            >
+                <i class="bi bi-plus-lg"></i>
+            </button>
+        </div>
+        }
+    </div>
+</form>
