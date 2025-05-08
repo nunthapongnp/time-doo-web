@@ -28,7 +28,27 @@
                 }
             </ul>
         </div>
-        <div class="p-4">
+        <div class="p-4 text-center">
+            <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic example"
+            >
+                <button
+                    type="button"
+                    class="btn btn-link text-decoration-none"
+                    (click)="changeLanguage('th')"
+                >
+                    TH
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link text-decoration-none"
+                    (click)="changeLanguage('en')"
+                >
+                    EN
+                </button>
+            </div>
             <button
                 (click)="logout()"
                 class="btn btn-outline-danger w-100 text-decoration-none"

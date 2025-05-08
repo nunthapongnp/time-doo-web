@@ -28,4 +28,22 @@ export class ProjectsService {
             "/api/v1/projects/tenant/" + this.auth.getTenantId(),
         );
     }
+
+    addProject(project: Project) {
+        project.tenantId = this.auth.getTenantId() ?? 0;
+        return this.http.post<ApiResponse<Project>>(
+            "/api/v1/projects",
+            project,
+        );
+    }
+
+    editProject(project: Project) {
+        return this.http.put<ApiResponse<Project>>("/api/v1/projects", project);
+    }
+
+    deleteProject(projectId: number) {
+        return this.http.delete<ApiResponse<any>>(
+            "/api/v1/projects/" + projectId,
+        );
+    }
 }

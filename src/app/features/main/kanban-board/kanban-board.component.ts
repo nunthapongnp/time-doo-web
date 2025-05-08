@@ -2,20 +2,13 @@ import { Component } from "@angular/core";
 import { Column, KanbanBoardService, Task } from "./kanban-board.service";
 import { SharedModule } from "../../../shared/shared.module";
 import { ActivatedRoute } from "@angular/router";
-import {
-    FormArray,
-    FormBuilder,
-    FormGroup,
-    ReactiveFormsModule,
-    Validators,
-} from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { emptyTextValidator } from "../../../shared/validators/empty-text.validator";
-import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
     selector: "app-kanban-board",
-    imports: [SharedModule, ReactiveFormsModule, TranslateModule],
+    imports: [SharedModule],
     templateUrl: "./kanban-board.component.html",
     styleUrl: "./kanban-board.component.scss",
 })

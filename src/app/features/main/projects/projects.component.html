@@ -1,10 +1,12 @@
 <div class="row mb-3">
-    <div class="col">
+    <div class="col d-flex justify-content-between align-items-center">
+        <h3>{{ "PROJECT.TITLE_PROJECT" | translate }}</h3>
         <button
             class="btn btn-primary"
             (click)="openModalAddProject(addProjectModal)"
         >
             <i class="bi bi-plus-lg"></i>
+            {{ "PROJECT.TITLE_ADD_PROJECT" | translate }}
         </button>
     </div>
 </div>
@@ -58,7 +60,15 @@
                             ngx-datatable-cell-template
                             class="text-center"
                         >
-                            <button class="btn btn-sm btn-outline-danger">
+                            <button
+                                class="btn btn-sm btn-outline-danger"
+                                (click)="
+                                    openModalDeleteProject(
+                                        confirmDeleteModal,
+                                        row.id
+                                    )
+                                "
+                            >
                                 <i class="bi bi-trash"></i>
                             </button>
                         </ng-template>
@@ -123,4 +133,24 @@
             </button>
         </div>
     </form>
+</ng-template>
+
+<ng-template #confirmDeleteModal>
+    <div class="modal-body text-center">
+        <p>Do you want to delete this user?</p>
+        <button
+            type="button"
+            class="btn btn-default"
+            (click)="deleteProject()"
+        >
+            {{ "ALL.YES" | translate }}
+        </button>
+        <button
+            type="button"
+            class="btn btn-primary"
+            (click)="closeModalDeleteProject()"
+        >
+            {{ "ALL.NO" | translate }}
+        </button>
+    </div>
 </ng-template>

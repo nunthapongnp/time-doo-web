@@ -14,7 +14,6 @@ import { TranslateService } from "@ngx-translate/core";
 export class MainLayoutComponent {
     constructor(private translate: TranslateService) {
         setTheme("bs5");
-        this.translate.setDefaultLang("th");
-        this.translate.use("th");
+        this.translate.use(localStorage.getItem("lang") ?? "th");
     }
 }

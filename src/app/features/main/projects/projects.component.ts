@@ -1,34 +1,29 @@
 import { Component, TemplateRef } from "@angular/core";
 import { ProjectsService, Project } from "./projects.service";
-import { RouterLink } from "@angular/router";
 import { SharedModule } from "../../../shared/shared.module";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
-import {
-    FormBuilder,
-    FormGroup,
-    ReactiveFormsModule,
-    Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { emptyTextValidator } from "../../../shared/validators/empty-text.validator";
-import { TranslateModule } from "@ngx-translate/core";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
     selector: "app-projects",
-    imports: [SharedModule, RouterLink, ReactiveFormsModule, TranslateModule],
+    imports: [SharedModule],
     templateUrl: "./projects.component.html",
     styleUrl: "./projects.component.scss",
-    providers: [BsModalService],
 })
 export class ProjectsComponent {
     constructor(
         private fb: FormBuilder,
         private projectService: ProjectsService,
         private modalService: BsModalService,
+        private toastr: ToastrService,
     ) {}
 
     modalRef?: BsModalRef;
     projects: Project[] = [];
     form!: FormGroup;
+    deletePorjectId = 0;
 
     ngOnInit() {
         this.createForm();
@@ -71,7 +66,52 @@ export class ProjectsComponent {
 
     addProject() {
         if (this.form.valid) {
-            console.log(this.form.value);
+            this.projectService.addProject(this.form.value).subscribe(
+                (res) => {
+                    this.loadData();
+                    this.toastr.success("project has been created", "Success!");
+                },
+                (err) => {
+                    this.toastr.error(
+                        err.error.error,
+                        "Failed to create project!",
+                    );
+                },
+            );
+            this.closeModalAddProject();
         }
+    }
+
+    setDeleteProjectId(projectId: number) {
+        this.deletePorjectId = projectId;
+    }
+
+    clearDeleteProjectId() {
+        this.deletePorjectId = 0;
+    }
+
+    openModalDeleteProject(template: TemplateRef<void>, projectId: number) {
+        this.setDeleteProjectId(projectId);
+        this.modalRef = this.modalService.show(template, {
+            class: "modal-sm",
+        });
+    }
+
+    closeModalDeleteProject() {
+        this.modalRef?.hide();
+        this.clearDeleteProjectId();
+    }
+
+    deleteProject() {
+        this.projectService.deleteProject(this.deletePorjectId).subscribe(
+            (_) => {
+                this.loadData();
+                this.toastr.success("project has been deleted", "Success!");
+            },
+            (err) => {
+                this.toastr.error(err.error.error, "Failed to delete project!");
+            },
+        );
+        this.closeModalDeleteProject();
     }
 }

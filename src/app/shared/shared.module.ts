@@ -9,6 +9,9 @@ import {
     NgxDatatableModule,
 } from "@swimlane/ngx-datatable";
 import { FormatDatePipe } from "./pipes/format-date.pipe";
+import { TranslateModule } from "@ngx-translate/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BsModalService } from "ngx-bootstrap/modal";
 
 @NgModule({
     declarations: [
@@ -17,8 +20,14 @@ import { FormatDatePipe } from "./pipes/format-date.pipe";
         TableComponent,
         TableClientComponent,
     ],
-    imports: [RouterModule, CommonModule, NgxDatatableModule],
-    providers: [ColumnChangesService],
+    imports: [
+        RouterModule,
+        CommonModule,
+        NgxDatatableModule,
+        TranslateModule,
+        ReactiveFormsModule,
+    ],
+    providers: [ColumnChangesService, BsModalService],
     exports: [
         CommonModule,
         RouterModule,
@@ -27,6 +36,8 @@ import { FormatDatePipe } from "./pipes/format-date.pipe";
         SidebarComponent,
         TableComponent,
         TableClientComponent,
+        TranslateModule,
+        ReactiveFormsModule,
     ],
 })
 export class SharedModule {}
