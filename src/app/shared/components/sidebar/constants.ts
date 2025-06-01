@@ -1,22 +1,27 @@
 export const menuItems = [
     {
         path: "dashboard",
-        label: "Dashboard",
-        icon: "speedometer2",
+        label: "MENU.DASHBOARD",
+        icon: "house",
     },
     {
         path: "projects",
-        label: "Projects",
+        label: "MENU.PROJECT",
         icon: "folder",
     },
     {
+        path: "tasks",
+        label: "MENU.TASK",
+        icon: "list-task",
+    },
+    {
         path: "users",
-        label: "Users",
+        label: "MENU.USER",
         icon: "people",
     },
     {
         path: "settings",
-        label: "Settings",
+        label: "MENU.SETTING",
         icon: "gear",
     },
 ];

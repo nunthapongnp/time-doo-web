@@ -23,7 +23,11 @@ export const routes: Routes = [
         component: ProjectsComponent,
     },
     {
-        path: "projects/:projectId",
+        path: "tasks/:projectId",
+        component: KanbanBoardComponent,
+    },
+    {
+        path: "tasks",
         component: KanbanBoardComponent,
     },
 ];

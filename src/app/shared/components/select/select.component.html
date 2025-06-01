@@ -1,0 +1,13 @@
+<ng-select
+    [items]="items"
+    bindLabel="label"
+    bindValue="value"
+    placeholder="{{ 'ALL.SELECT_PLASE_SELECT' | translate }}"
+    notFoundText="{{ 'ALL.SELECT_NOT_FOUND' | translate }}"
+    [(ngModel)]="modelChange"
+    [multiple]="multiple"
+    [searchable]="true"
+    [closeOnSelect]="!multiple"
+    [clearable]="true"
+>
+</ng-select>

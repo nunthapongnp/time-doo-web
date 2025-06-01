@@ -1,4 +1,9 @@
 {
+    "MENU.DASHBOARD": "Dashboard",
+    "MENU.PROJECT": "Projects",
+    "MENU.TASK": "My Tasks",
+    "MENU.USER": "Users",
+    "MENU.SETTING": "Settings",
     "ALL.APP_NAME": "Time Doo",
     "ALL.SAVE": "Save",
     "ALL.EDIT": "Edit",

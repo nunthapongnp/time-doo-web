@@ -35,7 +35,7 @@ export class KanbanBoardComponent {
     ngOnInit() {
         this.createForm();
         this.projectId = Number(this.route.snapshot.paramMap.get("projectId"));
-        this.loadData(this.projectId);
+        this.refProject() && this.loadData(this.projectId);
     }
 
     loadData(projectId: number) {
@@ -169,14 +169,24 @@ export class KanbanBoardComponent {
     }
 
     haveNewColumn() {
-        return this.columnsForm.controls.some(
-            (x) => !x.value.id || !(x.value.id > 0),
+        return (
+            !this.refProject() &&
+            this.columnsForm.controls.some(
+                (x) => !x.value.id || !(x.value.id > 0),
+            )
         );
     }
 
     haveNewTask(columnIndex: number) {
-        return this.getTasksForm(columnIndex).controls.some(
-            (x) => !x.value.id || !(x.value.id > 0),
+        return (
+            !this.refProject() &&
+            this.getTasksForm(columnIndex).controls.some(
+                (x) => !x.value.id || !(x.value.id > 0),
+            )
         );
+    }
+
+    refProject() {
+        return this.projectId && this.projectId > 0;
     }
 }

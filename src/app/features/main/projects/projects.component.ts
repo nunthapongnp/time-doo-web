@@ -5,10 +5,11 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { emptyTextValidator } from "../../../shared/validators/empty-text.validator";
 import { ToastrService } from "ngx-toastr";
+import { AddProjectModalComponent } from "./add-project-modal/add-project-modal.component";
 
 @Component({
     selector: "app-projects",
-    imports: [SharedModule],
+    imports: [SharedModule, AddProjectModalComponent],
     templateUrl: "./projects.component.html",
     styleUrl: "./projects.component.scss",
 })
@@ -65,6 +66,8 @@ export class ProjectsComponent {
     }
 
     addProject() {
+        console.log(this.form.value);
+
         if (this.form.valid) {
             this.projectService.addProject(this.form.value).subscribe(
                 (res) => {

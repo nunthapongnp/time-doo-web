@@ -1,4 +1,9 @@
 {
+    "MENU.DASHBOARD": "หน้าหลัก",
+    "MENU.PROJECT": "โปรเจค",
+    "MENU.TASK": "งานของฉัน",
+    "MENU.USER": "ผู้ใช้",
+    "MENU.SETTING": "ตั้งค่า",
     "ALL.APP_NAME": "Time Doo",
     "ALL.SAVE": "บันทึก",
     "ALL.EDIT": "แก้ไข",

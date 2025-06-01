@@ -11,8 +11,9 @@ export interface User {
     avatarUrl: string;
     createdBy: number;
     createdAt: string;
-    updatedBy: any;
-    updatedAt: any;
+    updatedBy: Date;
+    updatedAt: Date;
+    role: string;
 }
 
 @Injectable({
@@ -32,14 +33,14 @@ export class UsersService {
 
     addUser(user: User) {
         user.tenantId = this.auth.getTenantId() ?? 0;
-        return this.http.post<ApiResponse<any>>("/api/v1/users", user);
+        return this.http.post<ApiResponse<User>>("/api/v1/users", user);
     }
 
     editUser(user: User) {
-        return this.http.put<ApiResponse<any>>("/api/v1/users", user);
+        return this.http.put<ApiResponse<User>>("/api/v1/users", user);
     }
 
     deleteUser(userId: number) {
-        return this.http.delete<ApiResponse<any>>("/api/v1/users/" + userId);
+        return this.http.delete<ApiResponse<User>>("/api/v1/users/" + userId);
     }
 }

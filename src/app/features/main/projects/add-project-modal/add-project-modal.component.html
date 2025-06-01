@@ -1,0 +1,60 @@
+<form [formGroup]="form">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            {{ "PROJECT.TITLE_ADD_PROJECT" | translate }}
+        </h4>
+        <button
+            type="button"
+            class="btn-close close pull-right"
+            aria-label="Close"
+            (click)="closeModal()"
+        >
+            <span
+                aria-hidden="true"
+                class="visually-hidden"
+                >&times;</span
+            >
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row gap-3">
+            <div class="col-12">
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="{{ 'PROJECT.PROJECT_NAME' | translate }}"
+                />
+            </div>
+            <div class="col-12">
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="description"
+                    placeholder="{{ 'PROJECT.DESCRIPTION' | translate }}"
+                />
+            </div>
+            <div class="col-12">
+                <app-select
+                    [items]="usersSelect"
+                    [modelChange]="projectMember"
+                    [multiple]="true"
+                ></app-select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            (click)="closeModal()"
+        >
+            {{ "ALL.CANCEL" | translate }}
+        </button>
+        <button
+            class="btn btn-primary"
+            (click)="save()"
+        >
+            {{ "ALL.SAVE" | translate }}
+        </button>
+    </div>
+</form>

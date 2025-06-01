@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-body">
                 <app-table-client [rows]="users">
-                    <ngx-datatable-column>
+                    <ngx-datatable-column [width]="200">
                         <ng-template ngx-datatable-header-template>
                             {{ "USER.EMAIL" | translate }}
                         </ng-template>
@@ -24,27 +24,33 @@
                             let-index="rowIndex"
                             ngx-datatable-cell-template
                         >
-                            <button
-                                class="btn btn-sm btn-link"
-                                (click)="openModalEditUser(userModal, row.id)"
-                            >
+                            <i class="bi bi-person-circle"></i>
+                            <div>
+                                <a
+                                    class="text-primary"
+                                    (click)="
+                                        openModalEditUser(userModal, row.id)
+                                    "
+                                >
+                                    {{ row.fullName }}
+                                </a>
                                 {{ row.email }}
-                            </button>
+                            </div>
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column>
+                    <ngx-datatable-column [width]="200">
                         <ng-template ngx-datatable-header-template>
-                            {{ "USER.FULL_NAME" | translate }}
+                            {{ "USER.ROLE" | translate }}
                         </ng-template>
                         <ng-template
                             let-row="row"
                             let-index="rowIndex"
                             ngx-datatable-cell-template
                         >
-                            {{ row.fullName }}
+                            {{ row.role }}
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column>
+                    <ngx-datatable-column [width]="200">
                         <ng-template ngx-datatable-header-template>
                             {{ "USER.CREATED_AT" | translate }}
                         </ng-template>
@@ -54,18 +60,6 @@
                             ngx-datatable-cell-template
                         >
                             {{ row.createdAt | formatDate }}
-                        </ng-template>
-                    </ngx-datatable-column>
-                    <ngx-datatable-column>
-                        <ng-template ngx-datatable-header-template>
-                            {{ "USER.UPDATED_AT" | translate }}
-                        </ng-template>
-                        <ng-template
-                            let-row="row"
-                            let-index="rowIndex"
-                            ngx-datatable-cell-template
-                        >
-                            {{ row.updatedAt ?? row.createdAt | formatDate }}
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column [width]="50">

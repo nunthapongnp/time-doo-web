@@ -24,7 +24,7 @@
                             let-index="rowIndex"
                             ngx-datatable-cell-template
                         >
-                            <a [routerLink]="['/projects', row.id]">{{
+                            <a [routerLink]="['/tasks', row.id]">{{
                                 row.name
                             }}</a>
                         </ng-template>
@@ -80,77 +80,17 @@
 </div>
 
 <ng-template #addProjectModal>
-    <form [formGroup]="form">
-        <div class="modal-header">
-            <h4 class="modal-title pull-left">
-                {{ "PROJECT.TITLE_ADD_PROJECT" | translate }}
-            </h4>
-            <button
-                type="button"
-                class="btn-close close pull-right"
-                aria-label="Close"
-                (click)="closeModalAddProject()"
-            >
-                <span
-                    aria-hidden="true"
-                    class="visually-hidden"
-                    >&times;</span
-                >
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="row gap-3">
-                <div class="col-12">
-                    <input
-                        type="text"
-                        class="form-control"
-                        formControlName="name"
-                        placeholder="{{ 'PROJECT.PROJECT_NAME' | translate }}"
-                    />
-                </div>
-                <div class="col-12">
-                    <input
-                        type="text"
-                        class="form-control"
-                        formControlName="description"
-                        placeholder="{{ 'PROJECT.DESCRIPTION' | translate }}"
-                    />
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button
-                class="btn btn-secondary"
-                (click)="closeModalAddProject()"
-            >
-                {{ "ALL.CANCEL" | translate }}
-            </button>
-            <button
-                class="btn btn-primary"
-                (click)="addProject()"
-            >
-                {{ "ALL.SAVE" | translate }}
-            </button>
-        </div>
-    </form>
+    <app-add-project-modal
+        [form]="form"
+        (onCloseModal)="closeModalAddProject()"
+        (onSave)="addProject()"
+    ></app-add-project-modal>
 </ng-template>
 
 <ng-template #confirmDeleteModal>
-    <div class="modal-body text-center">
-        <p>Do you want to delete this user?</p>
-        <button
-            type="button"
-            class="btn btn-default"
-            (click)="deleteProject()"
-        >
-            {{ "ALL.YES" | translate }}
-        </button>
-        <button
-            type="button"
-            class="btn btn-primary"
-            (click)="closeModalDeleteProject()"
-        >
-            {{ "ALL.NO" | translate }}
-        </button>
-    </div>
+    <app-confirm-modal
+        description="Do you want to delete this user?"
+        (onClose)="closeModalDeleteProject()"
+        (onProcess)="deleteProject()"
+    ></app-confirm-modal>
 </ng-template>
